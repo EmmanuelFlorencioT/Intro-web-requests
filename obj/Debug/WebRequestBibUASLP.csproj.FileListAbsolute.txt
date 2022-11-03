@@ -1,0 +1,15 @@
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\bin\Debug\WebRequestBibUASLP.exe.config
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\bin\Debug\WebRequestBibUASLP.exe
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\bin\Debug\WebRequestBibUASLP.pdb
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.csproj.AssemblyReference.cache
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.csproj.SuggestedBindingRedirects.cache
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.Form1.resources
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.Properties.Resources.resources
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.csproj.GenerateResource.cache
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.csproj.CoreCompileInputs.cache
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.exe
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.pdb
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\bin\Debug\HtmlAgilityPack.dll
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\bin\Debug\HtmlAgilityPack.xml
+C:\Users\emmft\OneDrive\Documentos\UASLP\7mo Semestre\Interfaces Gráficas\3Parcial_Webcrawl\WebRequestBibUASLP\obj\Debug\WebRequestBibUASLP.csproj.CopyComplete
