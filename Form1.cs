@@ -13,8 +13,10 @@ namespace WebRequestBibUASLP
 {
     public partial class Form1 : Form
     {
-        string url;
-        HtmlAgilityPack.HtmlDocument htmlSrc;
+        private string url;
+        private HtmlAgilityPack.HtmlDocument htmlSrc;
+
+        private int numResults;
         
         public Form1()
         {
@@ -35,6 +37,7 @@ namespace WebRequestBibUASLP
         private void btnSearch_Click(object sender, EventArgs e)
         {
             loadPage();
+            getNumResults();
         }
 
         private void loadPage()
@@ -46,6 +49,13 @@ namespace WebRequestBibUASLP
             HtmlWeb web = new HtmlWeb();
 
             htmlSrc = web.Load(html);
+        }
+
+        private void getNumResults()
+        {
+            var node = htmlSrc.DocumentNode.SelectSingleNode("//h2[@id='numresults']/span");
+
+            int.TryParse(node.InnerHtml, out numResults); //Returns false if parsing went wrong
         }
     }
 }
