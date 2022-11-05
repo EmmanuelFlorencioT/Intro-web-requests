@@ -13,10 +13,11 @@ namespace WebRequestBibUASLP
 {
     public partial class Form1 : Form
     {
-        private string url;
+        private string urlScout, urlCatalog;
         private HtmlAgilityPack.HtmlDocument htmlSrc;
+        private List<string> urlBooks = new List<string>();
 
-        private int numResults;
+        private int numResults = 0;
         
         public Form1()
         {
@@ -36,26 +37,88 @@ namespace WebRequestBibUASLP
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            loadPage();
-            getNumResults();
+            LoadScoutPage();
+            DoCatalogSearch();
         }
 
-        private void loadPage()
+        private void LoadScoutPage()
         {
-            url = "https://www.bibliotecas.uaslp.mx/cgi-bin/koha/opac-search.pl?idx=&q="
+            urlScout = "https://www.bibliotecas.uaslp.mx/cgi-bin/koha/opac-search.pl?idx=&q="
                 + tbSearchQ.Text + "&weight_search=1";
-            var html = @url.ToString();
 
             HtmlWeb web = new HtmlWeb();
 
-            htmlSrc = web.Load(html);
-        }
+            htmlSrc = web.Load(@urlScout.ToString());
 
-        private void getNumResults()
-        {
             var node = htmlSrc.DocumentNode.SelectSingleNode("//h2[@id='numresults']/span");
 
-            int.TryParse(node.InnerHtml, out numResults); //Returns false if parsing went wrong
+            if(!int.TryParse(node.InnerHtml, out numResults)) //Returns false if parsing went wrong
+            {
+                MessageBox.Show("No se encontraron resultados!");
+            }
+        }
+
+        private void DoCatalogSearch()
+        {
+            HtmlWeb web = new HtmlWeb();
+            HtmlNodeCollection htmlNodeScout;
+
+            //Stores the html of each iteration of the search
+            HtmlAgilityPack.HtmlDocument htmlScout;
+
+            urlBooks.Clear();
+            lbBookResults.Items.Clear();
+
+            for (int i = 0; i < min(40, numResults); i += 20)
+            {
+                urlCatalog = "https://www.bibliotecas.uaslp.mx/cgi-bin/koha/opac-search.pl?idx=&q="
+                    + tbSearchQ.Text +"&offset="+ i.ToString() + "&sort_by=relevance_dsc&count=20";
+                
+                htmlScout = web.Load(@urlCatalog.ToString());
+
+                htmlNodeScout = htmlScout.DocumentNode.SelectNodes("//a[@class='title']");
+
+                foreach(var node in htmlNodeScout)
+                {
+                    urlBooks.Add(processBookUrl(node.OuterHtml));
+                    lbBookResults.Items.Add(processBookTitle(node.InnerHtml));
+                }
+            }
+
+        }
+
+        private void lbBookResults_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbBookResults.SelectedIndex != -1)
+            {
+                MessageBox.Show(urlBooks[lbBookResults.SelectedIndex]);
+            }
+        }
+
+        private int min(int a, int b)
+        {
+            if (a < b)
+                return a;
+            return b;
+        }
+
+        private string processBookTitle(string innerhtml)
+        {
+            string title;
+
+            title = innerhtml.Substring(0, innerhtml.IndexOf("/")-1);
+
+            return title;
+        }
+
+        private string processBookUrl(string outerhtml)
+        {
+            string url = "https://www.bibliotecas.uaslp.mx";
+
+            outerhtml = outerhtml.Substring(outerhtml.IndexOf("/"));
+            url += outerhtml.Substring(0, outerhtml.IndexOf("\""));
+
+            return url;
         }
     }
 }
