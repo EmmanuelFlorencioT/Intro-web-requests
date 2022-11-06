@@ -32,6 +32,8 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.lbBookResults = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbContributors = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbSearchQ
@@ -70,11 +72,31 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Resultados de la Búsqueda:";
             // 
+            // lbContributors
+            // 
+            this.lbContributors.FormattingEnabled = true;
+            this.lbContributors.Location = new System.Drawing.Point(323, 50);
+            this.lbContributors.Name = "lbContributors";
+            this.lbContributors.Size = new System.Drawing.Size(120, 95);
+            this.lbContributors.TabIndex = 4;
+            this.lbContributors.SelectedIndexChanged += new System.EventHandler(this.lbContributors_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(323, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Contribuidores:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbContributors);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbBookResults);
             this.Controls.Add(this.btnSearch);
@@ -92,6 +114,8 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListBox lbBookResults;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lbContributors;
+        private System.Windows.Forms.Label label2;
     }
 }
 

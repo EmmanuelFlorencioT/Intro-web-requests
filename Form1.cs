@@ -14,8 +14,9 @@ namespace WebRequestBibUASLP
     public partial class Form1 : Form
     {
         private string urlScout, urlCatalog;
-        private HtmlAgilityPack.HtmlDocument htmlSrc;
+        private HtmlAgilityPack.HtmlDocument htmlSrc, htmlBook;
         private List<string> urlBooks = new List<string>();
+        private List<string> urlContributors = new List<string>();
 
         private int numResults = 0;
         
@@ -68,6 +69,7 @@ namespace WebRequestBibUASLP
 
             urlBooks.Clear();
             lbBookResults.Items.Clear();
+            lbContributors.Items.Clear();
 
             for (int i = 0; i < min(40, numResults); i += 20)
             {
@@ -80,18 +82,39 @@ namespace WebRequestBibUASLP
 
                 foreach(var node in htmlNodeScout)
                 {
-                    urlBooks.Add(processBookUrl(node.OuterHtml));
-                    lbBookResults.Items.Add(processBookTitle(node.InnerHtml));
+                    if (node.InnerHtml.Contains(" / ")) //Make sure the book has an author
+                    {
+                        urlBooks.Add(processBookUrl(node.OuterHtml));
+                        lbBookResults.Items.Add(processBookTitle(node.InnerHtml));
+                    }
                 }
             }
 
+        }
+
+        private void LoadBookPage(string urlBook)
+        {
+            urlContributors.Clear();
+            lbContributors.Items.Clear();
+            
+            HtmlWeb web = new HtmlWeb();
+
+            htmlBook = web.Load(@urlBook.ToString());
+
+            var htmlNodes = htmlBook.DocumentNode.SelectNodes("//a[@class='contributors']");
+
+            foreach(var node in htmlNodes)
+            {
+                lbContributors.Items.Add(node.InnerHtml);
+                urlContributors.Add(processContribUrl(node.OuterHtml));
+            }
         }
 
         private void lbBookResults_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(lbBookResults.SelectedIndex != -1)
             {
-                MessageBox.Show(urlBooks[lbBookResults.SelectedIndex]);
+                LoadBookPage(urlBooks[lbBookResults.SelectedIndex]);
             }
         }
 
@@ -111,12 +134,34 @@ namespace WebRequestBibUASLP
             return title;
         }
 
+        private void lbContributors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbContributors.SelectedIndex != -1)
+            {
+                MessageBox.Show(urlContributors[lbContributors.SelectedIndex]);
+            }
+        }
+
         private string processBookUrl(string outerhtml)
         {
             string url = "https://www.bibliotecas.uaslp.mx";
 
             outerhtml = outerhtml.Substring(outerhtml.IndexOf("/"));
             url += outerhtml.Substring(0, outerhtml.IndexOf("\""));
+
+            return url;
+        }
+
+        private string processContribUrl(string outerhtml)
+        {
+            string url = "https://www.bibliotecas.uaslp.mx";
+            string aux;
+            string[] separator = new string[] { "href=\"" };
+
+            string[] strs = outerhtml.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            aux = strs[1];
+            aux = aux.Substring(0, aux.IndexOf("\""));
+            url += aux;
 
             return url;
         }
