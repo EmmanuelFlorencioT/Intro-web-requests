@@ -34,6 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbContributors = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbContribBooks = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // tbSearchQ
@@ -90,11 +92,30 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Contribuidores:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(546, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Libros de Contribuidores:";
+            // 
+            // lbContribBooks
+            // 
+            this.lbContribBooks.FormattingEnabled = true;
+            this.lbContribBooks.Location = new System.Drawing.Point(549, 51);
+            this.lbContribBooks.Name = "lbContribBooks";
+            this.lbContribBooks.Size = new System.Drawing.Size(120, 95);
+            this.lbContribBooks.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbContribBooks);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbContributors);
             this.Controls.Add(this.label1);
@@ -116,6 +137,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbContributors;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox lbContribBooks;
     }
 }
 

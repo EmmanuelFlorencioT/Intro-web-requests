@@ -138,7 +138,7 @@ namespace WebRequestBibUASLP
         {
             if(lbContributors.SelectedIndex != -1)
             {
-                MessageBox.Show(urlContributors[lbContributors.SelectedIndex]);
+                loadContribBooks(urlContributors[lbContributors.SelectedIndex]);
             }
         }
 
@@ -164,6 +164,30 @@ namespace WebRequestBibUASLP
             url += aux;
 
             return url;
+        }
+
+        private void loadContribBooks(string urlContribBook)
+        {
+            lbContribBooks.Items.Clear();
+
+            HtmlWeb web = new HtmlWeb();
+
+            htmlBook = web.Load(@urlContribBook.ToString());
+
+            var htmlNodes = htmlBook.DocumentNode.SelectNodes("//a[@class='title']");
+
+            if(htmlNodes != null)
+            {
+                foreach (var node in htmlNodes)
+                {
+                    lbContribBooks.Items.Add(processBookTitle(node.InnerHtml));
+                }
+            } else
+            {
+                MessageBox.Show("No se encontraron resultados!");
+            }
+
+            
         }
     }
 }
